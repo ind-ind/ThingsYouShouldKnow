@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ThingsYouShouldKnow</title>
+    <style>
+        /* This section handles the "Look" (CSS) */
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f0f2f5; margin: 0; padding: 20px; display: flex; flex-direction: column; align-items: center; }
+        h1 { color: #1a1a1a; margin-bottom: 30px; }
+        
+        /* Search Bar Styling */
+        #searchBar { width: 100%; max-width: 500px; padding: 12px 20px; font-size: 16px; border: 1px solid #ddd; border-radius: 25px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); outline: none; margin-bottom: 40px; }
+        
+        /* The Grid for your "Stuffs" */
+        .container { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 20px; width: 100%; max-width: 1000px; }
+        
+        /* Individual Card Styling */
+        .item-card { background: white; padding: 20px; border-radius: 15px; text-align: center; box-shadow: 0 4px 6px rgba(0,0,0,0.05); transition: transform 0.2s; cursor: pointer; text-decoration: none; color: inherit; }
+        .item-card:hover { transform: translateY(-5px); box-shadow: 0 8px 15px rgba(0,0,0,0.1); }
+        .item-card h2 { margin: 10px 0; font-size: 1.2rem; }
+        .item-card p { color: #666; font-size: 0.9rem; }
+        .hidden { display: none; } /* Used for search filtering */
+    </style>
+</head>
+<body>
+
+    <h1>ThingsYouShouldKnow</h1>
+
+    <!-- Search Feature -->
+    <input type="text" id="searchBar" placeholder="Search content..." onkeyup="searchFunction()">
+
+    <!-- Your Content Grid -->
+    <div class="container" id="contentGrid">
+        
+        <!-- CARD 1: Example Stuff -->
+        <a href="#" class="item-card">
+            <div style="font-size: 40px;">💡</div>
+            <h2>Infrastructure Basics</h2>
+            <p>Learn how servers and networks connect.</p>
+        </a>
+
+        <!-- CARD 2: Example Stuff -->
+        <a href="#" class="item-card">
+            <div style="font-size: 40px;">🛡️</div>
+            <h2>Security Tips</h2>
+            <p>How to keep your data safe online.</p>
+        </a>
+
+        <!-- Add more cards below following the same format -->
+
+    </div>
+
+    <script>
+        /* This section handles the "Logic" (JavaScript) */
+        function searchFunction() {
+            let input = document.getElementById('searchBar').value.toLowerCase();
+            let cards = document.getElementsByClassName('item-card');
+            
+            for (let i = 0; i < cards.length; i++) {
+                let title = cards[i].getElementsByTagName('h2')[0].innerText.toLowerCase();
+                let desc = cards[i].getElementsByTagName('p')[0].innerText.toLowerCase();
+                
+                if (title.includes(input) || desc.includes(input)) {
+                    cards[i].classList.remove('hidden');
+                } else {
+                    cards[i].classList.add('hidden');
+                }
+            }
+        }
+    </script>
+</body>
+</html>
